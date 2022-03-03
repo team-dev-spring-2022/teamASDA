@@ -39,6 +39,20 @@ const LoginScreen = () => {
       .catch(error => alert(error.message))
   }
 
+  const AnonymousLogin = () => {
+    auth
+      .signInAnonymously()
+      .then(() => {
+        console.log('User signed in anonymously');
+      })
+      .catch(error => {
+        if (error.code === 'auth/operation-not-allowed') {
+          console.log('Enable anonymous in your firebase console.');
+        }
+        console.error(error);
+      });
+  }
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -73,11 +87,17 @@ const LoginScreen = () => {
         >
           <Text style={styles.buttonOutlineText}>Register</Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          onPress={AnonymousLogin}
+          style={[styles.button, styles.buttonOutline]}
+        >
+          <Text style={styles.buttonOutlineText}>Sign in as a guest</Text>
+        </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
   )
 }
-
+ 
 export default LoginScreen
 
 const styles = StyleSheet.create({

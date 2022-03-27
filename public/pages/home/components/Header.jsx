@@ -1,32 +1,18 @@
-import { StyleSheet, Dimensions } from "react-native"
-import { COLORS } from './../../../templates/style/colors'
+import React from 'react'
+import { View, Text } from 'react-native'
+import { styles } from './../style/header'
 
-export const styles = StyleSheet.create({
-    header: {
-        padding: 16,
-        paddingTop: 50,
-    },
-    date: {
-        fontSize: 32,
-        fontWeight: '700',
-        color: COLORS().title,
-        fontFamily: 'Inter'
-    },
-    statusContainer: {
-        flexDirection: 'row'
-    },
-    statusText: {
-        fontSize: 14,
-        fontWeight: '600',
-        marginTop: 8,
-        color: COLORS().disabledText,
-        fontFamily: 'Inter'
-    },
-    separator: {
-        width: '100%',
-        height: 1,
-        backgroundColor: COLORS().disabledText,
-        marginTop: 15,
-        opacity: '0.2'
-    }
-})
+function Header() {
+    return (
+        <View style={styles.header}>
+            <Text style={styles.date}>9 марта 2012</Text>
+            <View style={styles.statusContainer}>
+                <Text style={styles.statusText}>5 complete, </Text>
+                <Text style={styles.statusText}>5 incomplete</Text>
+            </View>
+            <View style={styles.separator}></View>
+        </View>
+    )
+}
+
+export default Header

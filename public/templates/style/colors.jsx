@@ -3,7 +3,8 @@ const darkTheme = {
     disabledText: '#575767',
     defaultText: 'rgba(255, 255, 255, 0.7)',
 
-    background: '#141419'
+    background: '#141419',
+    button: '#242432'
 }
 
 const lightTheme = {
@@ -11,11 +12,12 @@ const lightTheme = {
     disabledText: '#b3b3b4',
     defaultText: '#575767',
 
-    background: '#fbfbfb'
+    background: '#fbfbfb',
+    button: '#3a3a3a'
 }
 
 export function COLORS() {
-    const theme = 'light'
+    const theme = 'dark'
 
     if(theme == 'dark') {
         return darkTheme

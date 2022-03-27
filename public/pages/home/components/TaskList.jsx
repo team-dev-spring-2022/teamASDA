@@ -1,53 +1,54 @@
-import { StyleSheet } from 'react-native'
-import { COLORS } from './../../../templates/style/colors'
+import React, { useState } from 'react'
+import { View, CheckBox, Text } from 'react-native'
+import { styles } from './../style/taskList'
 
-export const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'column',
-        padding: 16,
-        paddingTop: 0,
-    },
-    title: {
-        fontSize: 18,
-        fontFamily: 'Inter',
-        color: COLORS().title,
-        fontWeight: '700',
-        marginBottom: 16
-    },
-    checkbox: {
-        alignSelf: 'center',
-        width: 20,
-        height: 20,
-        borderRadius: 5,
-    },
-    listElement: {
-        flexDirection: 'row',
-        marginBottom: 32
-    },
-    listText: {
-        fontSize: 18,
-        fontFamily: 'Inter',
-        color: COLORS().defaultText,
-        marginLeft: 16,
-        fontWeight: 500,
-    },
-    listTextDisabled: {
-        fontSize: 18,
-        fontFamily: 'Inter',
-        color: COLORS().disabledText,
-        marginLeft: 16,
-        fontWeight: 500,
-    },
-    titleDisabled: {
-        fontSize: 18,
-        fontFamily: 'Inter',
-        color: COLORS().title,
-        fontWeight: '700',
-        marginBottom: 16,
-        marginTop: 20
-    },
-    listElementDisabled: {
-        flexDirection: 'row',
-        marginBottom: 16
-    }
-})
+function Tasklist() {
+    return (
+        <View style={styles.container}>
+            <Text style={styles.title}>Incompleted</Text>
+            <IncompletedTask />
+            <IncompletedTask />
+            <IncompletedTask />
+            <Text style={styles.titleDisabled}>Completed</Text>
+            <CompletedTask />
+            <CompletedTask />
+        </View>
+    )
+}
+
+function CompletedTask() {
+    const [isSelected, setSelection] = useState(true)
+
+    return (
+        <View style={styles.listElement}>
+            <CheckBox
+                value={isSelected}
+                onValueChange={setSelection}
+                style={styles.checkbox}
+            />
+
+            <Text style={styles.listTextDisabled}>Разработать дизайн-макет</Text>
+        </View>
+    )
+}
+
+function IncompletedTask() {
+    const [isSelected, setSelection] = useState(false)
+
+    return (
+        <View style={styles.listElement}>
+            <CheckBox
+                value={isSelected}
+                onValueChange={setSelection}
+                style={styles.checkbox}
+            />
+
+            <View>
+                <Text style={styles.listText}>Разработать дизайн-макет</Text>
+                <Text style={styles.listTextDate}>До 20.20.20</Text>
+            </View>
+        </View>
+    )
+}
+
+export default Tasklist

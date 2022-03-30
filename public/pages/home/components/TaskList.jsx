@@ -20,7 +20,7 @@ function CompletedTask() {
     const [isSelected, setSelection] = useState(true)
 
     return (
-        <View style={styles.listElementDisabled}>
+        <View style={styles.listElement}>
             <CheckBox
                 value={isSelected}
                 onValueChange={setSelection}
@@ -43,7 +43,10 @@ function IncompletedTask() {
                 style={styles.checkbox}
             />
 
-            <Text style={styles.listText}>Разработать дизайн-макет</Text>
+            <View>
+                <Text style={styles.listText}>Разработать дизайн-макет</Text>
+                <Text style={styles.listTextDate}>До 20.20.20</Text>
+            </View>
         </View>
     )
 }

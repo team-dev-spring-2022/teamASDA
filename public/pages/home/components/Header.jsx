@@ -5,7 +5,7 @@ import { styles } from './../style/header'
 function Header() {
     return (
         <View style={styles.header}>
-            <Text style={styles.date}>9 марта 2022</Text>
+            <Text style={styles.date}>9 марта 2012</Text>
             <View style={styles.statusContainer}>
                 <Text style={styles.statusText}>5 complete, </Text>
                 <Text style={styles.statusText}>5 incomplete</Text>

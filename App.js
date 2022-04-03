@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Dimensions, View } from 'react-native'
 import LoginScreen from './public/pages/authenfication/Authenfication'
 import Home from './public/pages/home/Home'
 import { COLORS } from './public/templates/style/colors'
@@ -14,6 +14,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS().background
+    backgroundColor: COLORS().background,
+    height: Dimensions.get('window').height,
+    width: '100%'
   },
 })

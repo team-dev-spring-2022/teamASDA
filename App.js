@@ -1,12 +1,14 @@
+import React from 'react'
 import { StyleSheet, Dimensions, View } from 'react-native'
-import LoginScreen from './public/pages/authenfication/Authenfication'
-import Home from './public/pages/home/Home'
+
+import Navigator from './public/Navigator'
+
 import { COLORS } from './public/templates/style/colors'
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Home />
+      <Navigator />
     </View>
   )
 }

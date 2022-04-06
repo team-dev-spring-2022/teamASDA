@@ -27,6 +27,6 @@ export const styles = StyleSheet.create({
         height: 1,
         backgroundColor: COLORS().disabledText,
         marginTop: 15,
-        opacity: '0.2'
+        opacity: 0.2
     }
 })

@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { View, TouchableHighlight, Text, Button as DefaultButton } from 'react-native'
 
 import Settings from './../svg/Settings'
@@ -32,6 +33,9 @@ function Profile() {
     }
 
     function Popup() {
+        function setTheme() {
+           
+        }
         return (
             <View style={styles.container}>
                 <View style={styles.header}>
@@ -51,7 +55,8 @@ function Profile() {
                         <Text style={styles.settingsText}>Change Theme</Text>
                         <DefaultButton
                             title='change'
-                            color={COLORS().button} />
+                            color={COLORS().button} 
+                            onPress={() => setTheme()}/>
                     </View>
 
                     <View style={styles.settingsItem}>

@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
-import { View, CheckBox, Text } from 'react-native'
+import React from 'react'
+import { View, Text, TouchableHighlight } from 'react-native'
 import { styles } from './../style/taskList'
 import { getData } from './../../../api/getData'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { changeTaskStatus } from '../../../api/changeTaskStatus'
 
 function Tasklist() {
     const [tasks, setTasks] = React.useState([{}])
@@ -17,7 +18,6 @@ function Tasklist() {
 
     React.useEffect(() => {
         createList()
-
     }, [])
 
     return (
@@ -27,12 +27,15 @@ function Tasklist() {
                 tasks.map(element => {
                     if (element.status == 'inProccess') {
                         return (
-                            <IncompletedTask text={element.content} date={element.date} key={Math.random()} />
+                            <IncompletedTask text={element.content}
+                                date={element.date}
+                                id={element._id}
+                                key={Math.random()} />
                         )
                     }
                 })
             }
-
+            <Text style={styles.titleDisabled}>Completed</Text>
             {
                 tasks.map(element => {
                     if (element.status == 'completed') {
@@ -42,44 +45,45 @@ function Tasklist() {
                     }
                 })
             }
-            <Text style={styles.titleDisabled}>Completed</Text>
         </View>
     )
-}
 
-function CompletedTask(props) {
-    const [isSelected, setSelection] = useState(true)
+    function CompletedTask(props) {
+        return (
+            <View style={styles.listElement}>
+                <TouchableHighlight
+                    style={styles.checkbox}>
 
-    return (
-        <View style={styles.listElement}>
-            <CheckBox
-                value={isSelected}
-                onValueChange={setSelection}
-                style={styles.checkbox}
-            />
+                    <View></View>
+                </TouchableHighlight>
 
-            <Text style={styles.listTextDisabled}>{props.text}</Text>
-        </View>
-    )
-}
-
-function IncompletedTask(props) {
-    const [isSelected, setSelection] = useState(false)
-
-    return (
-        <View style={styles.listElement}>
-            <CheckBox
-                value={isSelected}
-                onValueChange={setSelection}
-                style={styles.checkbox}
-            />
-
-            <View>
-                <Text style={styles.listText}>{props.text}</Text>
-                <Text style={styles.listTextDate}>{props.date}</Text>
+                <Text style={styles.listTextDisabled}>{props.text}</Text>
             </View>
-        </View>
-    )
+        )
+    }
+
+    function IncompletedTask(props) {
+        function changeStatus(id) {
+            changeTaskStatus(id)
+            createList()
+        }
+
+        return (
+            <View style={styles.listElement}>
+                <TouchableHighlight
+                    onPress={() => changeStatus(props.id)}
+                    style={styles.checkbox}>
+
+                    <View></View>
+                </TouchableHighlight>
+
+                <View>
+                    <Text style={styles.listText}>{props.text}</Text>
+                    <Text style={styles.listTextDate}>{props.date}</Text>
+                </View>
+            </View>
+        )
+    }
 }
 
 export default Tasklist

@@ -1,6 +1,7 @@
 export const initialState = {
     page: 1,
-    authScreen: 1
+    authScreen: 1,
+    isOpen: false
 }
 
 export function rootReduсer(state = initialState, action) {
@@ -9,6 +10,9 @@ export function rootReduсer(state = initialState, action) {
     }
     else if (action.type == 'SELECTAUTH') {
         return { ...state, authScreen: action.payload }
+    }
+    else if (action.type == 'OPENPOPUP') {
+        return { ...state, isOpen: action.payload }
     }
 
     else return state

@@ -1,10 +1,10 @@
 import { rootUrl } from './rootUrl'
 
-export function getData() {
+export function getData(token) {
     const url = rootUrl + '/info'
 
     let data = {
-        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmFiNmQ5ZWNkNzY1MDU2YzIxNDFhYSIsImlhdCI6MTY0Njk2NjUxMCwiZXhwIjoxNjQ3MjI1NzEwfQ.LMOpY5a5G8AZXOdHXvGpM7LVqR02wzaZmDgtOz_hsZ0",
+        token: token
     }
 
     try {
@@ -17,7 +17,10 @@ export function getData() {
         })
             .then((response) => {
                 return response.json().then((data) => {
-                    return data
+                    return {
+                        username: data.username,
+                        tasks: data.task
+                    }
                 }).catch((err) => {
                     console.log(err)
                 })

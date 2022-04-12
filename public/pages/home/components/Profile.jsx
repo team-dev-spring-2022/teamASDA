@@ -1,4 +1,5 @@
 import React from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { View, TouchableHighlight, Text, Button as DefaultButton } from 'react-native'
 
@@ -33,9 +34,10 @@ function Profile() {
     }
 
     function Popup() {
-        function setTheme() {
-           
+        async function setTheme() {
+            await AsyncStorage.setItem('theme', 'dark')
         }
+
         return (
             <View style={styles.container}>
                 <View style={styles.header}>

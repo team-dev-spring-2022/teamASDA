@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { View, Button, Alert } from 'react-native'
 
 import Input from './Input'
@@ -8,13 +9,22 @@ import { COLORS } from './../../../templates/style/colors'
 import { postRegistration } from './../../../api/postRegistration'
 
 const Registration = () => {
+    const dispatch = useDispatch()
+
     const [password, setPassword] = useState('')
     const [login, setLogin] = useState('')
     const [name, setName] = useState('')
     const [mail, setMail] = useState('')
 
-    function registration() {
-        postRegistration(name, mail, login, password).then(response => Alert.alert(response))
+    async function registration() {
+        const message = await postRegistration(name, mail, login, password)
+
+        Alert.alert('Info', message)
+        console.log(message)
+    }
+
+    function changeAuth() {
+        dispatch({ type: 'SELECTAUTH', payload: 1 })
     }
 
     return (
@@ -44,6 +54,7 @@ const Registration = () => {
             <View style={styles.footer}>
                 <Button
                     title='have account?'
+                    onPress={() => changeAuth()}
                     color={COLORS().button} />
                 <Button
                     title='Create account'

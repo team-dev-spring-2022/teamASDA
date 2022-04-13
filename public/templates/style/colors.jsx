@@ -1,4 +1,8 @@
-import { getData } from './../../api/getData'
+let theme = 'light'
+
+export function initTheme(color) {
+    theme = color
+}
 
 const darkTheme = {
     title: 'rgba(255, 255, 255, 0.78)',
@@ -19,8 +23,6 @@ const lightTheme = {
 }
 
 export function COLORS() {
-    const theme = 'dark'
-
     if (theme == 'dark') {
         return darkTheme
     }

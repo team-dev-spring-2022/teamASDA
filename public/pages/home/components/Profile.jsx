@@ -1,4 +1,5 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { View, TouchableHighlight, Text, Button as DefaultButton } from 'react-native'
@@ -34,8 +35,15 @@ function Profile() {
     }
 
     function Popup() {
+        const dispatch = useDispatch()
         async function setTheme() {
-            await AsyncStorage.setItem('theme', 'dark')
+            //
+        }
+
+        async function logout() {
+            await AsyncStorage.removeItem('token').then(
+                dispatch({ type: 'SELECTPAGE', payload: 1 })
+            )
         }
 
         return (
@@ -57,8 +65,8 @@ function Profile() {
                         <Text style={styles.settingsText}>Change Theme</Text>
                         <DefaultButton
                             title='change'
-                            color={COLORS().button} 
-                            onPress={() => setTheme()}/>
+                            color={COLORS().button}
+                            onPress={() => setTheme()} />
                     </View>
 
                     <View style={styles.settingsItem}>
@@ -72,6 +80,14 @@ function Profile() {
                         <Text style={styles.settingsText}>New Password</Text>
                         <DefaultButton
                             title='change'
+                            color={COLORS().button} />
+                    </View>
+
+                    <View style={styles.settingsItem}>
+                        <Text style={styles.settingsText}>Exit Account</Text>
+                        <DefaultButton
+                            onPress={() => logout()}
+                            title='logout'
                             color={COLORS().button} />
                     </View>
                 </View>

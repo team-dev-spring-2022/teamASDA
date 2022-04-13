@@ -1,24 +1,30 @@
 import React from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import { useSelector } from 'react-redux'
+
+import { ScrollView } from 'react-native'
 
 import Header from './components/Header'
 import Tasklist from './components/TaskList'
 import Profile from './components/Profile'
 import Popup from './components/Popup'
+import AddButton from './components/AddButton'
 
 function Home() {
-    return (
-        <View>
-            <Header />
-            <Tasklist />
-            <Profile />
-            <Popup/>
-        </View>
+    const isOpen = useSelector(state => state.isOpen)
+
+    if (!isOpen) {
+        return (
+            <ScrollView>
+                <Header />
+                <Tasklist />
+                <Profile />
+                <AddButton />
+            </ScrollView>
+        )
+    }
+    else return (
+        <Popup />
     )
 }
-
-const styles = StyleSheet.create({
-
-})
 
 export default Home

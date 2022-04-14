@@ -10,7 +10,9 @@ const darkTheme = {
     defaultText: 'rgba(255, 255, 255, 0.7)',
 
     background: '#141419',
-    button: '#242432'
+    button: '#242432',
+
+    checkBox: 'black'
 }
 
 const lightTheme = {
@@ -19,10 +21,13 @@ const lightTheme = {
     defaultText: '#575767',
 
     background: '#fbfbfb',
-    button: '#3a3a3a'
+    button: '#3a3a3a',
+
+    checkBox: 'black'
 }
 
 export function COLORS() {
+    console.log(theme)
     if (theme == 'dark') {
         return darkTheme
     }

@@ -11,9 +11,6 @@ export const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height,
         backgroundColor: COLORS().background,
-        position: 'absolute',
-        top: 0,
-        left: 0,
         padding: 16,
         paddingTop: 50,
     },
@@ -37,6 +34,9 @@ export const styles = StyleSheet.create({
         height: 40,
         margin: 12,
         padding: 10,
-        borderRadius: 5
+        borderRadius: 5,
+        borderBottomWidth: 1,
+        borderBottomColor: '#939292',
+        color: COLORS().defaultText
     }
 })

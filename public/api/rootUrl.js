@@ -1,5 +1,5 @@
 const local = 'http://localhost:8000'
 
-const deploy = ''
+const deploy = 'https://backendlist.herokuapp.com'
 
-export const rootUrl = local
+export const rootUrl = deploy
